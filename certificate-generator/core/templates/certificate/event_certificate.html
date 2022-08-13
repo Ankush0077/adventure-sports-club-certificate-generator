@@ -1,0 +1,14 @@
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+  {% load static %}
+  <img src= 'static/images/certificates/{{certificate.name}}_{{certificate.gender}}_{{certificate.event}}.png'alt="Certificate" style="width:100%;">
+</body>
+</html> 
+{% endblock %}

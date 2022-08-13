@@ -1,0 +1,35 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+{% include 'partials/nav.html' %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Event</th>
+                    <th scope="col">Name</th>
+                    <th scope="col"><span class="float-right mr-4">Certificate PDF</span></th>
+                    <th scope="col"><span class="float-right mr-4">Certificate JPEG</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for certificate in certificate %}
+                  <tr>
+                    <td>{{ certificate.event }}</td>
+                    <td><span>{{ certificate.name }}</span></td>
+                    <td>
+                        <a class="btn btn-primary btn-sm float-right" href="{% url 'certificate' certificate.id %}">View Certificate PDF</a>
+                    </td>
+                    <td>
+                      <a class="btn btn-primary btn-sm float-right" href="{% url 'certificate-image' certificate.id %}">View Certificate JPEG</a>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body style="border-left: 5px solid;
+            border-right: 5px solid;">
+<h1 style="
+        text-align: center;
+        font-weight:bold;
+        font-size: 50px;
+        border-top: 5px solid;
+">Certificate of achievement</h1>
+<img src='images/runner_black_silhouette_shadow_photo_cut_out-rb0f2f793a8be48d683f587efd38c301b_x7saw_8byvr_512.webp'
+    style="
+        display: block;
+        text-align:center;
+        width=250px;
+        "
+>
+<p style="
+    text-align: center;
+    font-size: 20px;
+">This certificate is awarded to</p>
+<p style="
+        text-align:center;
+        font-weight:bold;
+        font-size: 30px;
+">{{certificate.name}}</p>
+<p style="
+    text-align: center;
+    font-size: 20px;
+">for successfully completing the <strong>{{certificate.event}}({{certificate.gender}})</strong> event in Azadi Ka Amrit Mahotsav organised by Adventure Sports Club IIT Kanpur from 29/07/2022 to 15/08/2022.</p>
+<p style="
+    text-align: center;
+    font-size: 20px;
+">Congratulations!</p>
+<br></br>
+<div>
+    <table style="
+            text-align: center;
+">
+        <tr>
+            <td>
+                <div style="
+                    font-size: 18px;
+                    border-left: 5px solid;
+            ">{{certificate.event}} Distance: {{certificate.kilometers}} KM</div>
+            </td>
+            <td>
+                <div style="
+                font-size: 18px;
+                border-right: 5px solid;
+            ">Completion Time: {{certificate.hours}} hours</div>
+            </td>
+        </tr>
+    </table>
+</div>
+<br></br>
+<div>
+    <table style="
+            text-align: center;
+">
+        <tr>
+            <td>
+                <img src='images/iitklogo.jpg'
+                    style="
+                        display: block;
+                        width=200px;
+                        border-bottom: 5px solid;
+                        border-left: 5px solid;
+                        "
+>
+            </td>
+            <td>
+                <img src='images/logo.jpg'
+                    style="
+                        display: block;
+                        width=190px;
+                        border-bottom: 5px solid;
+                        border-right: 5px solid;
+                        "
+>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+{% endblock %}
