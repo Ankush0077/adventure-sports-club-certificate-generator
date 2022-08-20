@@ -22,10 +22,10 @@ def certificate(request, pk):
     name=certificate.name
     print(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
     
-    image = Image.open(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
-    
     if certificate.top==True:
         image=Image.open(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}_top.jpg')
+    else:
+        image = Image.open(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
     
     draw = ImageDraw.Draw(image)
     
@@ -57,8 +57,10 @@ def certificate(request, pk):
     draw.text(((X-5*x)/2, Y), name, fill=color, font=font)
     
     # save the edited image
-    
-    image.save(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}.png')
+    if certificate.top==True:
+        image.save(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}_top.png')
+    else:
+        image.save(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}.png')
     
     template_path = 'certificate/event_certificate.html'
     context = {
@@ -67,7 +69,10 @@ def certificate(request, pk):
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
 
-    response['Content-Disposition'] = f'filename={name}_"Adventure_Sports_Club_IITK_Amrit_Mahotsav_{event}_Event_Participation_Certificate".pdf'
+    if certificate.top==True:
+        response['Content-Disposition'] = f'filename={name}_"Adventure_Sports_Club_IITK_Amrit_Mahotsav_{event}_Event_Achievement_Certificate".pdf'
+    else:
+        response['Content-Disposition'] = f'filename={name}_"Adventure_Sports_Club_IITK_Amrit_Mahotsav_{event}_Event_Participation_Certificate".pdf'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -89,7 +94,10 @@ def certificateImage(request, pk):
     }
     # print(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
     
-    image = Image.open(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
+    if certificate.top==True:
+        image=Image.open(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}_top.jpg')
+    else:
+        image = Image.open(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
     
     draw = ImageDraw.Draw(image)
     
@@ -119,14 +127,22 @@ def certificateImage(request, pk):
     color = 'rgb(23, 63, 63)'
     draw.text(((X-5*x)/2, Y), name, fill=color, font=font)
     # save the edited image
+    if certificate.top==True:
+        image.save(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}_top.jpg')
+    else:
+        image.save(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}.jpg')
     
-    image.save(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}.jpg')
-    
-    img = open(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}.jpg', 'rb')
+    if certificate.top==True:
+        img = open(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}_top.jpg', 'rb')
+    else:
+        img = open(f'static/images/certificates/{certificate.name}_{certificate.gender}_{certificate.event}.jpg', 'rb')
 
     response = FileResponse(img)
     
-    response['Content-Disposition'] = f'filename={name}_"Adventure_Sports_Club_IITK_Amrit_Mahotsav_{event}_Event_Participation_Certificate".jpg'
+    if certificate.top==True:
+        response['Content-Disposition'] = f'filename={name}_"Adventure_Sports_Club_IITK_Amrit_Mahotsav_{event}_Event_Achievement_Certificate".jpg'
+    else:
+        response['Content-Disposition'] = f'filename={name}_"Adventure_Sports_Club_IITK_Amrit_Mahotsav_{event}_Event_Participation_Certificate".jpg'
 
     return response
     

@@ -8,7 +8,11 @@
 
 <div class="container">
   {% load static %}
+  {% if certificate.top %}
+    <img src= 'static/images/certificates/{{certificate.name}}_{{certificate.gender}}_{{certificate.event}}_top.png'alt="Certificate" style="width:100%;">
+  {% else %}
   <img src= 'static/images/certificates/{{certificate.name}}_{{certificate.gender}}_{{certificate.event}}.png'alt="Certificate" style="width:100%;">
+  {% endif %}
 </body>
 </html> 
 {% endblock %}
