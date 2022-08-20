@@ -8,9 +8,10 @@ class Certificate(models.Model):
     hours= models.CharField(max_length=20)
     kilometers = models.CharField(max_length=20)
     top_effort = models.CharField(max_length=20)
+    top=models.BooleanField(default=False)
     
     USERNAME_FIELD ='name'
-    REQUIRED_FIELDS = ['gender','event','hours','kilometers','top_effort']
+    REQUIRED_FIELDS = ['gender','event','hours','kilometers','top_effort','top']
     
     def __str__(self):
         return self.name

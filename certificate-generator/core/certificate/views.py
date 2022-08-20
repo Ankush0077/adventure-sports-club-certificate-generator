@@ -18,6 +18,7 @@ def index(request):
 
 def certificate(request, pk):
     certificate = Certificate.objects.get(id=pk)
+    print(certificate.top)
     event=certificate.event
     name=certificate.name
     print(f'static/images/events/{certificate.gender.lower()}_{certificate.event.lower()}.jpg')
